@@ -3,6 +3,31 @@
 #include "libft.h"
 #include <stdlib.h>
 
+t_map   *lst_add_map(t_map *map, char c, int size)
+{
+    t_map *new;
+    t_map *begin;
+    t_map *up;
+
+    new = (t_map *)malloc(sizeof(t_map));
+    ft_bzero(new, sizeof(t_map));
+    new->c = c;
+    if ((begin = map))
+    {
+        while (begin->next)
+            begin = begin->next;
+        new->pos = begin->pos + 1;
+        begin->next = new;
+        new->prev = begin;
+        up = get_map_pos(map, (new->pos - size));
+        if ((new->up = up))
+            up->down = new;
+        return (map);
+    }
+    new->pos = 0;
+    return (new);
+}
+
 t_lt *lst_add_tetri(t_info *info, t_tetri *tetri)
 {
     t_lt *new;

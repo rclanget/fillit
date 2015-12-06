@@ -4,7 +4,9 @@ SRC_PATH 	= srcs/
 OBJ_PATH	= obj/
 INC_PATH 	= include/ libft/includes/
 
-SRC_NAME	= main.c exit.c parse.c lst_set.c free.c check.c
+SRC_NAME	= main.c exit.c parse.c lst_set.c free.c check.c get_square.c \
+			lst_get.c
+
 OBJ_NAME	= $(SRC_NAME:.c=.o)
 
 SRC			=	$(addprefix $(SRC_PATH),$(SRC_NAME))
