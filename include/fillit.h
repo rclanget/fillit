@@ -4,12 +4,15 @@
 typedef struct      s_tetri
 {
     char            *line;
+    struct s_tetri  *prev;
     struct s_tetri  *next;
 }                   t_tetri;
 
 typedef struct      s_lt
 {
     t_tetri         *tetriminos;
+    char            letter;
+    struct s_lt     *prev;
     struct s_lt     *next;
 }                   t_lt;
 

@@ -12,6 +12,8 @@ t_lt *lst_add_tetri(t_lt *lt, t_tetri *tetri)
     new = (t_lt *)malloc(sizeof(t_lt));
     new->tetriminos = tetri;
     new->next = lt ? lt : NULL;
+    new->prev = lt ? new : NULL;
+    new->letter = lt ? new->next->letter + 1 : 'A';
     return (new);
 }
 
