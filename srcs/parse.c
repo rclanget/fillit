@@ -2,40 +2,33 @@
 
 #include "libft.h"
 #include <fcntl.h>
+#include <unistd.h>
 
-int     check_line(char *line)
-{
-    int i;
 
-    i = 0;
-    while (line[i])
-    {
-        if (line[i] != '.' && line[i] != '#')
-            return (0);
-        i++;
-    }
-    return ((i == 4));
-}
-t_tetri *ft_parse(char *name)
+t_lt *ft_parse(char *name, t_lt *lt)
 {
-    t_tetri *begin;
+    t_tetri *tetri;
     char    *line;
     int     fd;
     int     i;
 
-    begin = NULL;
-    line = NULL;
+    tetri = NULL;
     fd = open(name, O_RDONLY);
     i = 0;
     while (get_next_line(fd, &line) > 0)
     {
-        if (!ft_strcmp(line, ""))
+        if (!ft_strcmp(line, "") && !(tetri = NULL))
         {
             i = 0;
+            free(line);
             continue ;
         }
         if ((i++ > 3) || !check_line(line))
             ft_exit("Error: bad tetriminos");
+        if ((tetri = lst_add_line(tetri, line)) && i == 4)
+            lt = lst_add_tetri(lt, tetri);
+        free(line);
     }
-    return (begin);
+    close(fd);
+    return (lt);
 }
