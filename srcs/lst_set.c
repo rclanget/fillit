@@ -3,17 +3,18 @@
 #include "libft.h"
 #include <stdlib.h>
 
-t_lt *lst_add_tetri(t_lt *lt, t_tetri *tetri)
+t_lt *lst_add_tetri(t_info *info, t_tetri *tetri)
 {
     t_lt *new;
 
     if (!tetri)
-        return (lt);
+        return (info->list);
     new = (t_lt *)malloc(sizeof(t_lt));
     new->tetriminos = tetri;
-    new->next = lt ? lt : NULL;
-    new->prev = lt ? new : NULL;
-    new->letter = lt ? new->next->letter + 1 : 'A';
+    new->next = info->list ? info->list : NULL;
+    new->prev = info->list ? new : NULL;
+    new->letter = info->list ? new->next->letter + 1 : 'A';
+    info->size++;
     return (new);
 }
 

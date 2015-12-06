@@ -4,7 +4,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-t_lt *ft_parse(char *name, t_lt *lt)
+void ft_parse(char *name, t_info *info)
 {
     t_tetri *tetri;
     char    *line;
@@ -25,10 +25,9 @@ t_lt *ft_parse(char *name, t_lt *lt)
         if ((i++ > 3) || !check_line(line))
             ft_exit("Error: bad tetriminos");
         if ((tetri = lst_add_line(tetri, line)) && i == 4)
-            lt = lst_add_tetri(lt, tetri);
+            info->list = lst_add_tetri(info, tetri);
         free(line);
     }
     if (i != 4 && !close(fd))
         ft_exit("Error: bad tetriminos");
-    return (lt);
 }

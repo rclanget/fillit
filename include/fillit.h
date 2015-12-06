@@ -16,11 +16,17 @@ typedef struct      s_lt
     struct s_lt     *next;
 }                   t_lt;
 
+typedef struct      s_info
+{
+    t_lt            *list;
+    int             size;
+}                   t_info;
+
 void                ft_exit(char *msg);
 
-t_lt                *ft_parse(char *name, t_lt *lt);
+void                ft_parse(char *name, t_info *info);
 
-t_lt                *lst_add_tetri(t_lt *lt, t_tetri *tetri);
+t_lt                *lst_add_tetri(t_info *info, t_tetri *tetri);
 t_tetri             *lst_add_line(t_tetri *tetri, char *line);
 
 void                ft_check_list(t_lt *lt);
