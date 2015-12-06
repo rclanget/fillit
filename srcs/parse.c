@@ -4,7 +4,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 
-
 t_lt *ft_parse(char *name, t_lt *lt)
 {
     t_tetri *tetri;

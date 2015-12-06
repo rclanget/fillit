@@ -10,7 +10,7 @@ typedef struct      s_tetri
 typedef struct      s_lt
 {
     t_tetri         *tetriminos;
-    struct s_lt   *next;
+    struct s_lt     *next;
 }                   t_lt;
 
 void                ft_exit(char *msg);

@@ -1,8 +1,7 @@
 #include "fillit.h"
-#include <string.h>
 
 #include "libft.h"
-
+#include <string.h>
 #include <unistd.h>
 
 void ft_print_lt(t_lt *lt)
