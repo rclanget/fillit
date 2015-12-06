@@ -1,29 +1,44 @@
 #include "fillit.h"
 
-int  ft_check_tetri(t_tetri *tetri)
+static int  ft_check_around(t_tetri *tetri, int i)
 {
-    //
-    // Il faut encore checker que chaque bloc est en contact avec un autre
-    // bloc sur un de ses cotes
-    // 
+    int j;
+
+    j = 0;
+    if (tetri->prev && tetri->prev->line[i] == '#')
+        j++;
+    if (tetri->next && tetri->next->line[i] == '#')
+        j++;
+    if (tetri->line[i - 1] && tetri->line[i - 1] == '#')
+        j++;
+    if (tetri->line[i + 1] && tetri->line[i + 1] == '#')
+        j++;
+    return (j > 0);
+}
+
+static int  ft_check_tetri(t_tetri *tetri)
+{
     t_tetri *begin;
     int     i;
     int     nbr;
+    int     lines;
 
     begin = tetri;
     nbr = 0;
+    lines = 0;
     while (begin)
     {
         i = 0;
         while (begin->line[i])
         {
-            if (begin->line[i] == '#')
+            if (begin->line[i] == '#' && ft_check_around(begin, i))
                 nbr++;
             i++;
         }
+        lines++;
         begin = begin->next;
     }
-    return ((nbr == 4));
+    return (((nbr == 4) && (lines == 4)));
 }
 
 void ft_check_list(t_lt *lt)
@@ -46,7 +61,7 @@ int  check_line(char *line)
     i = 0;
     while (line[i])
     {
-        if (line[i] != '.' && line[i] != '#')
+        if ((line[i] != '.' && line[i] != '#' && i < 4))
             return (0);
         i++;
     }

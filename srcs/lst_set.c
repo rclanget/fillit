@@ -23,11 +23,13 @@ t_tetri *lst_add_line(t_tetri *tetri, char *line)
     new = (t_tetri *)malloc(sizeof(t_tetri));
     new->line = ft_strdup(line);
     new->next = NULL;
+    new->prev = NULL;
     if ((begin = tetri))
     {
         while (begin->next)
             begin = begin->next;
-        begin->next = new;
+        if ((begin->next = new))
+            new->prev = begin;
         return (tetri);
     }
     else

@@ -16,7 +16,7 @@ t_lt *ft_parse(char *name, t_lt *lt)
     i = 0;
     while (get_next_line(fd, &line) > 0)
     {
-        if (!ft_strcmp(line, "") && !(tetri = NULL))
+        if (i == 4 && !(tetri = NULL))
         {
             i = 0;
             free(line);
@@ -28,6 +28,7 @@ t_lt *ft_parse(char *name, t_lt *lt)
             lt = lst_add_tetri(lt, tetri);
         free(line);
     }
-    close(fd);
+    if (i != 4 && !close(fd))
+        ft_exit("Error: bad tetriminos");
     return (lt);
 }
