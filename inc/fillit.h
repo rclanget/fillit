@@ -13,13 +13,13 @@
 #ifndef FILLIT_H
 # define FILLIT_H
 
-# include "../libft/libft.h"
+# include "libft.h"
 # include <fcntl.h>
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
 
-# define BUFF_SIZE 5
+//# define BUFF_SIZE 5
 # define COLOR 0
 # define ERROR 0
 # define DEBUG 0

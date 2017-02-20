@@ -13,8 +13,8 @@
 NAME = fillit
 SRC = src/*.c
 OBJ = $(SRC:.c=.o)
-INC =  -I inc/
-FLAGS = -Wall -Wextra -Werror 
+INC =  -I inc/ -I libft/includes
+FLAGS = -arch i386 -arch x86_64
 
 all: $(NAME)
 
